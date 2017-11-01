@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ContactListItemComponent } from './contact/contact-list/contact-list-item/contact-list-item.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import {ContactService} from './contact/services/contact.service';
+import {MaterialComponentsModule} from './material-components/material-components.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +14,12 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
     ContactListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterialComponentsModule
   ],
-  providers: [],
+  providers: [
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {ContactService} from '../services/contact.service';
+import {Contact} from '../contact';
 
 @Component({
   selector: 'ca-contact-list',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactListComponent implements OnInit {
 
-  constructor() { }
+  contacts: Contact[];
+  contact: Contact;
 
-  ngOnInit() {
+  @Output() contactSelected: EventEmitter<Contact>;
+
+  constructor(private contactService: ContactService) {
+    this.contacts = [];
   }
 
+  ngOnInit() {
+
+    this.contacts = this.contactService.findContacts();
+  }
+
+  onContactSelect(contact: Contact) {
+    console.log(contact);
+  }
 }

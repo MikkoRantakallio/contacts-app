@@ -1,0 +1,14 @@
+.contactCard{
+  width: 500px;
+  margin-bottom: 7px;
+  font-family: "Palatino Linotype";
+  }
+
+.cardTitle{
+  font-family: "Palatino Linotype";
+  font-size: 20px;
+}
+
+.cardContent{
+  margin-left: 60px;
+}
