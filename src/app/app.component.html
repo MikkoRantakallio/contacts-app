@@ -1,4 +1,3 @@
-
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav class="sidenav">
     <p>Jolly good!</p>
@@ -18,13 +17,14 @@
 
   </mat-toolbar>
 
-  <div>
-    <ca-contact-list></ca-contact-list>
+  <router-outlet>
+    <div>
+      <ca-contact-list></ca-contact-list>
 
-    <button mat-fab class="addButton">
-      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-    </button>
-
-  </div>
+      <button mat-fab class="addButton" (click)="showAddContact()">
+        <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+      </button>
+    </div>
+  </router-outlet>
 
 </mat-sidenav-container>
