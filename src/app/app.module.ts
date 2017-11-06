@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'contacts',
-    component: AppComponent
+    component: ContactListComponent
   }
 ];
 

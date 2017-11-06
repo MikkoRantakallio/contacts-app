@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ContactService} from '../services/contact.service';
 import {Contact} from '../contact';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ca-contact-list',
@@ -14,7 +15,7 @@ export class ContactListComponent implements OnInit {
 
   @Output() contactSelected: EventEmitter<Contact>;
 
-  constructor(private contactService: ContactService) {
+  constructor(private contactService: ContactService, private router: Router) {
     this.contacts = [];
   }
 
@@ -26,4 +27,10 @@ export class ContactListComponent implements OnInit {
   onContactSelect(contact: Contact) {
     console.log(contact);
   }
+
+  showAddContact() {
+    this.router.navigate(['/add-contact']);
+  }
+
+
 }
