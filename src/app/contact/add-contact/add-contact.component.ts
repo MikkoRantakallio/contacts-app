@@ -10,7 +10,7 @@ import {ContactService} from '../services/contact.service';
 })
 export class AddContactComponent implements OnInit {
 
-  id : number;
+  id: number;
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -25,15 +25,15 @@ export class AddContactComponent implements OnInit {
 
   insertContact() {
 
-    if (this.firstName !== '' && this.lastName !== '') {
+    if (this.firstName.length > 0 && this.lastName.length > 0) {
       let contact: Contact = new Contact(6, this.firstName, this.lastName, this.phoneNumber, this.streetAddress, this.city);
-      this.contactService.insertContact(contact);
+      this.contactService.saveContact(contact);
 
       this.firstName = '';
       this.lastName = '';
-      this.phoneNumber='';
-      this.streetAddress='';
-      this.city='';
+      this.phoneNumber = '';
+      this.streetAddress = '';
+      this.city = '';
 
 //      this.router.navigate(['/users']);
     }
