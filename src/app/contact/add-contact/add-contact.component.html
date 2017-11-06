@@ -1,4 +1,31 @@
-<div style="font-size: 30px">
-  Add-contact work properly!
+<div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="First name" value="" [(ngModel)]="firstName">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Last name" value="" [(ngModel)]="lastName">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Phone number" value="" [(ngModel)]="phoneNumber">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Address" value="" [(ngModel)]="streetAddress">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="City" value="" [(ngModel)]="city">
+  </mat-form-field>
+
+  <button mat-fab class="addButton" (click)="insertContact()">
+    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+  </button>
+
+  <button mat-fab class="addButton" (click)="showContacts()">
+    <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon>
+  </button>
 
 </div>
