@@ -24,6 +24,10 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: ContactListComponent
+  },
+  {
+    path: 'contacts/:id',
+    component: AddContactComponent
   }
 ];
 

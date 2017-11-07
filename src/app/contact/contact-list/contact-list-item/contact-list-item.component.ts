@@ -15,5 +15,4 @@ export class ContactListItemComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

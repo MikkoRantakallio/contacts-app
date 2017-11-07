@@ -1,34 +1,50 @@
-<div fxLayout="column" fxFlex="40">
-</div>
-<div fxLayout="column" fxFlex="50">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="First name" value="" [(ngModel)]="firstName">
-  </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Last name" value="" [(ngModel)]="lastName">
-  </mat-form-field>
+  <mat-card class="contactCard">
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Phone number" value="" [(ngModel)]="phoneNumber">
-  </mat-form-field>
+    <mat-card-header>
+      <mat-card-title class="cardTitle">Contact information</mat-card-title>
+    </mat-card-header>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Address" value="" [(ngModel)]="streetAddress">
-  </mat-form-field>
+    <mat-card-content class="cardContent">
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="City" value="" [(ngModel)]="city">
-  </mat-form-field>
+      <div>
 
-  <button mat-fab class="addButton" (click)="insertContact()">
-    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-  </button>
+        <mat-form-field class="editField">
+          <input matInput placeholder="First name" value="" [(ngModel)]="firstName">
+        </mat-form-field>
 
-  <button mat-fab class="addButton" (click)="showContacts()">
-    <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon>
-  </button>
+        <mat-form-field class="editField">
+          <input matInput placeholder="Last name" value="" [(ngModel)]="lastName">
+        </mat-form-field>
 
-</div>
-<div fxLayout="column" fxFlex="40">
-</div>
+        <mat-form-field class="editField">
+          <input matInput placeholder="Phone number" value="" [(ngModel)]="phoneNumber">
+        </mat-form-field>
+
+        <mat-form-field class="editField">
+          <input matInput placeholder="Address" value="" [(ngModel)]="streetAddress">
+        </mat-form-field>
+
+        <mat-form-field class="editField">
+          <input matInput placeholder="City" value="" [(ngModel)]="city">
+        </mat-form-field>
+
+        <div>
+          <button mat-fab class="addButton" (click)="insertContact()">
+            <mat-icon aria-label="Add button">add</mat-icon>
+          </button>
+
+          <button mat-fab class="backButton" (click)="showContacts()">
+            <mat-icon aria-label="Back button">arrow_back</mat-icon>
+          </button>
+
+          <button mat-fab class="deleteButton" (click)="deleteContact(contact)">
+            <mat-icon aria-label="Delete button">delete</mat-icon>
+          </button>
+        </div>
+
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+

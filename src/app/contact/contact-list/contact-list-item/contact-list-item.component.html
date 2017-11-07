@@ -1,10 +1,19 @@
 <mat-card class="contactCard">
 
+  <div>
+    <mat-icon>face</mat-icon>
+  </div>
+
   <mat-card-header>
-    <!--    <div mat-card-avatar class="example-header-image"></div>-->
-    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+<!--    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+<mat-icon aria-label="Icon">person</mat-icon>
+-->
+    <!-- <img mat-card-avatar src="https://source.unsplash.com/random/200x200"> -->
+
+
     <mat-card-title class="cardTitle">{{contact.lastName}}, {{contact.firstName}}</mat-card-title>
   </mat-card-header>
+
   <mat-card-content class="cardContent">
     <div>
       {{contact.streetAddress}}, {{contact.city}}

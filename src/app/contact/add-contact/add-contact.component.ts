@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Contact} from '../contact';
 import {ContactService} from '../services/contact.service';
 
@@ -17,26 +17,57 @@ export class AddContactComponent implements OnInit {
   streetAddress: string;
   city: string;
 
-  constructor(private router: Router, private contactService: ContactService) {
+  contact: Contact;
+
+  constructor(private router: Router, private contactService: ContactService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    console.log(this.id);
+
+    if (this.id > 0) {
+      this.contact = this.contactService.findContactById(this.id);
+
+      this.firstName = this.contact.firstName;
+      this.lastName = this.contact.lastName;
+      this.phoneNumber = this.contact.phoneNumber;
+      this.streetAddress = this.contact.streetAddress;
+      this.city = this.contact.city;
+    }
   }
 
   insertContact() {
 
     if (this.firstName.length > 0 && this.lastName.length > 0) {
-      let contact: Contact = new Contact(6, this.firstName, this.lastName, this.phoneNumber, this.streetAddress, this.city);
-      this.contactService.saveContact(contact);
+      let contact: Contact = new Contact(this.id, this.firstName, this.lastName, this.phoneNumber, this.streetAddress, this.city);
 
-      this.firstName = '';
-      this.lastName = '';
-      this.phoneNumber = '';
-      this.streetAddress = '';
-      this.city = '';
+      if (this.id === 0) {
+        this.contactService.insertContact(contact);
+        this.firstName = '';
+        this.lastName = '';
+        this.phoneNumber = '';
+        this.streetAddress = '';
+        this.city = '';
+      }
+      else{
 
-//      this.router.navigate(['/users']);
+        this.contactService.updateContact(contact);
+      }
     }
+  }
+
+  deleteContact(contact: Contact) {
+
+    this.contactService.deleteContact(this.contact);
+
+    this.firstName = '';
+    this.lastName = '';
+    this.phoneNumber = '';
+    this.streetAddress = '';
+    this.city = '';
+    this.id = 0;
   }
 
   showContacts() {
