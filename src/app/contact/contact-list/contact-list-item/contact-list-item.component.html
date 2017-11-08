@@ -1,27 +1,50 @@
 <mat-card class="contactCard">
 
-  <div>
-    <mat-icon>face</mat-icon>
+  <!--
+  <div fxLayout="row" fxLayoutAlign="start stretch" fxFlex="10">
   </div>
-
-  <mat-card-header>
-<!--    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
-<mat-icon aria-label="Icon">person</mat-icon>
 -->
-    <!-- <img mat-card-avatar src="https://source.unsplash.com/random/200x200"> -->
+  <!--  <div fxLayout="row" fxLayoutAlign="start start" fxFlex>-->
+
+  <!--
+    <div fxLayout="column" fxLayoutAlign="start stretch" >
+      <mat-card-header>
+        <!--    <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
+        <mat-icon aria-label="Icon">person</mat-icon>
+        -->
+  <!-- <img mat-card-avatar src="https://source.unsplash.com/random/200x200">
 
 
-    <mat-card-title class="cardTitle">{{contact.lastName}}, {{contact.firstName}}</mat-card-title>
-  </mat-card-header>
+  <mat-card-title class="cardTitle">{{contact.lastName}}, {{contact.firstName}}</mat-card-title>
+</mat-card-header>
+</div>
 
-  <mat-card-content class="cardContent">
-    <div>
-      {{contact.streetAddress}}, {{contact.city}}
-    </div>
-    <div>
-      {{contact.phoneNumber}}
-    </div>
-  </mat-card-content>
+<div fxLayout="column" fxLayoutAlign="start stretch" >
+<mat-card-content class="cardContent">
+  <div>
+    {{contact.streetAddress}}, {{contact.city}}
+  </div>
+  <div>
+    {{contact.phoneNumber}}
+  </div>
+</mat-card-content>
+</div> -->
 
+
+  <table>
+    <tr>
+      <td rowspan="3"  class="iconCol">
+        <mat-icon aria-label="Icon" class="bigIcon">person</mat-icon>
+      </td>
+      <td class="cardTitle">{{contact.lastName}}, {{contact.firstName}}</td>
+    </tr>
+    <tr>
+      <td>{{contact.streetAddress}}, {{contact.city}}</td>
+    </tr>
+    <tr>
+      <td>{{contact.phoneNumber}}</td>
+    </tr>
+  </table>
+  <!--  </div>-->
 </mat-card>
 

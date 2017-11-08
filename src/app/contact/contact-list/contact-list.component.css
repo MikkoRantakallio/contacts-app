@@ -1,11 +1,5 @@
-.contactList{
-
-  margin: auto;
-  width: 500px;
-}
-
 .addButton{
-  right: 50px;
+  right: 30%;
   bottom:50px;
   position: fixed;
 }

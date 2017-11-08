@@ -1,6 +1,6 @@
 .contactCard{
-  width: 500px;
-  height: 70px;
+  width: 400px;
+  height: 80px;
   margin-bottom: 8px;
   font-family: "Palatino Linotype";
   }
@@ -11,5 +11,16 @@
 }
 
 .cardContent{
-  margin-left: 60px;
+/*  margin-left: 60px;*/
+}
+
+.table {
+  display: flex;
+  border: solid;
+}
+.iconCol{
+  width: 60px;
+}
+.bigIcon{
+  font-size: 50px;
 }
