@@ -11,11 +11,13 @@ import {AddContactComponent} from './contact/add-contact/add-contact.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
+import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
+import { ContactLoginComponent } from './contact/contact-login/contact-login.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ContactListComponent
+    component: ContactLoginComponent
   },
   {
     path: 'add-contact',
@@ -37,7 +39,9 @@ const routes: Routes = [
     AppComponent,
     ContactListItemComponent,
     ContactListComponent,
-    AddContactComponent
+    AddContactComponent,
+    ContactAddressPipe,
+    ContactLoginComponent
   ],
   imports: [
     BrowserModule,

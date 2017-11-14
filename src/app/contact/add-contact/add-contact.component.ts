@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Contact} from '../contact';
 import {ContactService} from '../services/contact.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'ca-add-contact',
@@ -10,20 +11,23 @@ import {ContactService} from '../services/contact.service';
 })
 export class AddContactComponent implements OnInit {
 
+
   id: number;
   firstName: string;
   lastName: string;
   phoneNumber: string;
   streetAddress: string;
   city: string;
+  mapPath: string;
 
-  contact: Contact;
+  @ViewChild('map') mapFrameElement: ElementRef;
 
-  constructor(private router: Router, private contactService: ContactService, private route: ActivatedRoute) {
+  @Input() contact: Contact;
+
+  constructor(private router: Router, private contactService: ContactService, private route: ActivatedRoute, public sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
-
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     console.log(this.id);
 
@@ -36,9 +40,26 @@ export class AddContactComponent implements OnInit {
       this.streetAddress = this.contact.streetAddress;
       this.city = this.contact.city;
     }
+
+    this.refreshMapFrame();
+  }
+
+  refreshMapFrame() {
+    setTimeout(() => {
+      const mapFrame = this.mapFrameElement.nativeElement;
+
+      if (this.streetAddress != null) {
+        mapFrame.src = 'https://maps.google.com/maps?q=' + this.streetAddress + ',' + this.city + '&output=embed';
+      }
+      else {
+        mapFrame.src = 'https://maps.google.com/maps?q=lappeenranta&output=embed';
+      }
+    });
   }
 
   insertContact() {
+
+    const mapFrame = this.mapFrameElement.nativeElement;
 
     if (this.firstName.length > 0 && this.lastName.length > 0) {
       let contact: Contact = new Contact(this.id, this.firstName, this.lastName, this.phoneNumber, this.streetAddress, this.city);
@@ -50,8 +71,9 @@ export class AddContactComponent implements OnInit {
         this.phoneNumber = '';
         this.streetAddress = '';
         this.city = '';
+        mapFrame.src = 'https://maps.google.com/maps?q=lappeenranta&output=embed';
       }
-      else{
+      else {
 
         this.contactService.updateContact(contact);
       }
@@ -59,6 +81,8 @@ export class AddContactComponent implements OnInit {
   }
 
   deleteContact(contact: Contact) {
+
+    const mapFrame = this.mapFrameElement.nativeElement;
 
     this.contactService.deleteContact(this.contact);
 
@@ -68,6 +92,7 @@ export class AddContactComponent implements OnInit {
     this.streetAddress = '';
     this.city = '';
     this.id = 0;
+    mapFrame.src = 'https://maps.google.com/maps?q=lappeenranta&output=embed';
   }
 
   showContacts() {

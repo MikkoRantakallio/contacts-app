@@ -1,14 +1,14 @@
 <mat-card class="ca-contact-list-card">
   <div fxLayout="row">
     <div fxLayout="column" fxLayoutAlign="center center">
-      <mat-icon aria-label="Icon" class="ca-contact-list-card-icon">person</mat-icon>
+      <mat-icon aria-label="Icon" class="ca-contact-list-card-icon">contacts</mat-icon>
     </div>
     <div fxLayout="column">
       <div fxLayout="row" class="ca-contact-list-card-title">
         {{contact.lastName}}, {{contact.firstName}}
       </div>
       <div fxLayout="row">
-        {{contact.streetAddress}}, {{contact.city}}
+        {{contact | contactAddress}}
       </div>
       <div fxLayout="row">
         {{contact.phoneNumber}}
