@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatInputModule} from '@angular/material';
+import {LoginService} from '../services/login.service';
 
 @Component({
   selector: 'ca-contact-login',
@@ -12,7 +13,7 @@ export class ContactLoginComponent implements OnInit {
   userName: string;
   passWord: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class ContactLoginComponent implements OnInit {
     console.log(this.userName + ' - ' + this.passWord);
 
     if (this.userName && this.passWord) {
+      this.loginService.login();
       this.router.navigate(['/contacts']);
     }
   }

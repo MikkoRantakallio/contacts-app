@@ -11,8 +11,10 @@ import {AddContactComponent} from './contact/add-contact/add-contact.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import { ContactAddressPipe } from './contact/pipes/contact-address.pipe';
-import { ContactLoginComponent } from './contact/contact-login/contact-login.component';
+import {ContactAddressPipe} from './contact/pipes/contact-address.pipe';
+import {ContactLoginComponent} from './contact/contact-login/contact-login.component';
+import {LoginService} from './contact/services/login.service';
+import {ContactLogoutComponent} from './contact/contact-logout/contact-logout.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,10 @@ const routes: Routes = [
   {
     path: 'contacts/:id',
     component: AddContactComponent
+  },
+  {
+    path: 'logout',
+    component: ContactLogoutComponent
   }
 ];
 
@@ -41,7 +47,8 @@ const routes: Routes = [
     ContactListComponent,
     AddContactComponent,
     ContactAddressPipe,
-    ContactLoginComponent
+    ContactLoginComponent,
+    ContactLogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,8 @@ const routes: Routes = [
     MatInputModule
   ],
   providers: [
-    ContactService
+    ContactService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
