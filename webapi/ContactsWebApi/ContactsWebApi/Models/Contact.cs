@@ -23,6 +23,11 @@ namespace ContactsWebApi.Models
             StreetAddress = streetAddress;
             City = city;
         }
+
+        public Contact()
+        {
+            
+        }
     }
 
 }

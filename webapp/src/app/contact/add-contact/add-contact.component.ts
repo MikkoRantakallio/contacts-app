@@ -1,8 +1,9 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Contact} from '../contact';
-import {ContactService} from '../services/contact.service';
+import {ContactLocalStorageService} from '../services/contact-local-storage.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ContactService} from '../services/contact.service';
 
 @Component({
   selector: 'ca-add-contact',

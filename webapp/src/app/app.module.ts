@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ContactListItemComponent} from './contact/contact-list/contact-list-item/contact-list-item.component';
 import {ContactListComponent} from './contact/contact-list/contact-list.component';
-import {ContactService} from './contact/services/contact.service';
+import {ContactLocalStorageService} from './contact/services/contact-local-storage.service';
 import {MaterialComponentsModule} from './material-components/material-components.module';
 import {RouterModule, Routes} from '@angular/router';
 import {AddContactComponent} from './contact/add-contact/add-contact.component';
@@ -15,6 +15,9 @@ import {ContactAddressPipe} from './contact/pipes/contact-address.pipe';
 import {ContactLoginComponent} from './contact/contact-login/contact-login.component';
 import {LoginService} from './contact/services/login.service';
 import {ContactLogoutComponent} from './contact/contact-logout/contact-logout.component';
+import {ContactService} from './contact/services/contact.service';
+import {ContactHttpService} from './contact/services/contact-http.service';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -56,10 +59,13 @@ const routes: Routes = [
     MaterialComponentsModule,
     RouterModule.forRoot(routes),
     FlexLayoutModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [
+    ContactLocalStorageService,
     ContactService,
+    ContactHttpService,
     LoginService
   ],
   bootstrap: [AppComponent]

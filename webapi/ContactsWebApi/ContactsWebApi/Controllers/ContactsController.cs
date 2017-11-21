@@ -31,5 +31,25 @@ namespace ContactsWebApi.Controllers
             var contact = _contactService.FindContactById(id);
             return new JsonResult(contact);
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]Contact newContact)
+        {
+            _contactService.PostContact(newContact);
+            return new NoContentResult();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]Contact modifiedContact)
+        {
+            return _contactService.PutContact(id, modifiedContact);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return _contactService.DeleteContact(id);
+        }
+
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactsWebApi.Models;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Newtonsoft.Json;
 
 namespace ContactsWebApi.Repositories
 {
@@ -24,6 +26,27 @@ namespace ContactsWebApi.Repositories
         public Contact GetById(int id)
         {
             return _contacts.FirstOrDefault(c => c.Id == id);
+        }
+
+        public bool Add(Contact newContact)
+        {
+            _contacts.Add(newContact);
+            return true;
+        }
+
+        public bool Update(int id, Contact modifiedContact)
+        {
+            var contact = GetById(id);
+            int ind =_contacts.IndexOf(contact);
+            _contacts[ind] = modifiedContact;
+
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            _contacts.Remove(GetById(id));
+            return true;
         }
 
         private void Initialize()
