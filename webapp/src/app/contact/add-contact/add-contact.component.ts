@@ -33,7 +33,15 @@ export class AddContactComponent implements OnInit {
     console.log(this.id);
 
     if (this.id > 0) {
-      this.contact = this.contactService.findContactById(this.id);
+//      this.contact = this.contactService.findContactById(this.id);
+
+/*      this.contactService.findContactById(this.id).subscribe((contact: Contact) => {
+        this.contact = contact;
+      });
+      */
+      this.contactService.findContactById(this.id).subscribe((contact: Contact) => {
+        this.contact = contact;
+      });
 
       this.firstName = this.contact.firstName;
       this.lastName = this.contact.lastName;

@@ -16,9 +16,15 @@ export class ContactService {
 //    return this.localStorage.findContacts();
   }
 
-  findContactById(id: number): Contact {
+  findContactById(id: number): Observable<Contact> {
 
-    return this.localStorage.findContactById(id);
+    var obj: Observable<Contact>;
+
+    obj = this.contactHttpService.getById(id);
+
+    return obj;
+
+//    return this.localStorage.findContactById(id);
   }
 
   updateContact(modifiedContact: Contact) {

@@ -20,7 +20,16 @@ export class ContactHttpService {
     });
   }
 
-  create (contact: Contact) {
+  create(contact: Contact) {
     return this.http.post(this.url, contact).subscribe();
+  }
+
+  getById(id: number): Observable<Contact> {
+
+    var idUrl = this.url + '/' + id;
+
+    return this.http.get(idUrl).map((response) => {
+      return response;
+    });
   }
 }

@@ -31,39 +31,20 @@ namespace ContactsWebApi.Services
 
         public IActionResult PostContact(Contact newContact)
         {
-            if (contactRepository.Add(newContact))
-            {
-                return new OkResult();
-            }
-            else
-            {
-                return new NotFoundResult();
-            }
+            contactRepository.Add(newContact);
+            return new NoContentResult();
         }
 
         public IActionResult PutContact(int id, Contact modifiedContact)
         {
-            if (contactRepository.Update(id, modifiedContact))
-            {
-                return new OkResult();
-
-            }
-            else
-            {
-                return new NotFoundResult();
-            }
+            contactRepository.Update(id, modifiedContact);
+            return new NoContentResult();
         }
 
         public IActionResult DeleteContact(int id)
         {
-            if (contactRepository.Delete(id))
-            {
-                return new OkResult();
-            }
-            else
-            {
-                return new NotFoundResult();
-            }
+            contactRepository.Delete(id);
+            return new OkResult();
         }
     }
 }
