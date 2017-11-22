@@ -44,7 +44,7 @@ namespace ContactsWebApi.Services
         public IActionResult DeleteContact(int id)
         {
             contactRepository.Delete(id);
-            return new OkResult();
+            return new NoContentResult();
         }
     }
 }

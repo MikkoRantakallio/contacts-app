@@ -11,36 +11,25 @@ export class ContactService {
   }
 
   findContacts(): Observable<Contact[]> {
-
     return this.contactHttpService.get();
-//    return this.localStorage.findContacts();
   }
 
   findContactById(id: number): Observable<Contact> {
-
-    var obj: Observable<Contact>;
-
-    obj = this.contactHttpService.getById(id);
-
-    return obj;
-
-//    return this.localStorage.findContactById(id);
+    return this.contactHttpService.getById(id);
   }
 
   updateContact(modifiedContact: Contact) {
 
-    this.localStorage.updateContact(modifiedContact);
+    return this.contactHttpService.update(modifiedContact);
   }
 
   deleteContact(contact: Contact) {
-    this.localStorage.deleteContact(contact);
+
+    return this.contactHttpService.delete(contact.id);
   }
 
   insertContact(contact: Contact) {
-
-//    this.localStorage.insertContact(contact);
     this.contactHttpService.create(contact);
   }
-
 }
 

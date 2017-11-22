@@ -24,12 +24,26 @@ export class ContactHttpService {
     return this.http.post(this.url, contact).subscribe();
   }
 
+  update(contact: Contact) {
+
+    var idUrl = this.url + '/' + contact.id;
+
+    return this.http.put(idUrl, contact).subscribe();
+  }
+
+  delete(id:number) {
+
+    var idUrl = this.url + '/' + id;
+
+    return this.http.delete(idUrl).subscribe();
+  }
+
   getById(id: number): Observable<Contact> {
 
     var idUrl = this.url + '/' + id;
 
-    return this.http.get(idUrl).map((response) => {
-      return response;
+    return this.http.get(idUrl).map((contact) => {
+      return contact as Contact;
     });
   }
 }

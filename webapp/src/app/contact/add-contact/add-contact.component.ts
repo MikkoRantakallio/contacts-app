@@ -23,9 +23,11 @@ export class AddContactComponent implements OnInit {
 
   @ViewChild('map') mapFrameElement: ElementRef;
 
-  @Input() contact: Contact;
+  public contact: Contact;
 
   constructor(private router: Router, private contactService: ContactService, private route: ActivatedRoute, public sanitizer: DomSanitizer) {
+
+    this.contact = null;
   }
 
   ngOnInit() {
@@ -33,23 +35,16 @@ export class AddContactComponent implements OnInit {
     console.log(this.id);
 
     if (this.id > 0) {
-//      this.contact = this.contactService.findContactById(this.id);
-
-/*      this.contactService.findContactById(this.id).subscribe((contact: Contact) => {
-        this.contact = contact;
-      });
-      */
       this.contactService.findContactById(this.id).subscribe((contact: Contact) => {
         this.contact = contact;
+
+        this.firstName = this.contact.firstName;
+        this.lastName = this.contact.lastName;
+        this.phoneNumber = this.contact.phoneNumber;
+        this.streetAddress = this.contact.streetAddress;
+        this.city = this.contact.city;
       });
-
-      this.firstName = this.contact.firstName;
-      this.lastName = this.contact.lastName;
-      this.phoneNumber = this.contact.phoneNumber;
-      this.streetAddress = this.contact.streetAddress;
-      this.city = this.contact.city;
     }
-
     this.refreshMapFrame();
   }
 

@@ -30,6 +30,17 @@ namespace ContactsWebApi.Repositories
 
         public bool Add(Contact newContact)
         {
+            // Get the biggest id value, increment id and set it to the new contact Id
+            int max = 0;
+            for (int i = 0; i < _contacts.Count; i++)
+            {
+                if (_contacts[i].Id > max)
+                {
+                    max = _contacts[i].Id;
+                }
+            }
+            newContact.Id = max + 1;
+
             _contacts.Add(newContact);
             return true;
         }
