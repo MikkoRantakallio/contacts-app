@@ -26,6 +26,7 @@ namespace ContactsWebApi.Repositories
         public Contact GetById(int id)
         {
             return _contacts.FirstOrDefault(c => c.Id == id);
+//            return _context.Contacts.FirstOrDefault(c => c.Id == id);
         }
 
         public bool Add(Contact newContact)

@@ -27,9 +27,8 @@ namespace ContactsWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IContactService, ContactService>();
-            services.AddSingleton<IContactRepository, ContactRepository>();
-            
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=ContactsWebApi;Trusted_Connection=True;";
+            services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
             services.AddCors(o => o.AddPolicy("ContactsAppPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -37,8 +36,8 @@ namespace ContactsWebApi
             
             services.AddMvc();
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=ContactsWebApi;Trusted_Connection=True;";
-            services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
+            services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IContactRepository, ContactDbRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

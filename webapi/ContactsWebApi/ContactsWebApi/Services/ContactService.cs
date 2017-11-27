@@ -11,39 +11,39 @@ namespace ContactsWebApi.Services
 {
     public class ContactService : IContactService
     {
-        private readonly IContactRepository contactRepository;
+        private IContactRepository _contactRepository;
 
         public ContactService(IContactRepository contactRepository)
         {
-            this.contactRepository = contactRepository;
+            _contactRepository = contactRepository;
         }
 
         public List<Contact> FindContacts()
         {
-            var contacts = contactRepository.GetAll();
+            var contacts = _contactRepository.GetAll();
             return contacts;
         }
 
         public Contact FindContactById(int id)
         {
-            return contactRepository.GetById(id);
+            return _contactRepository.GetById(id);
         }
 
         public IActionResult PostContact(Contact newContact)
         {
-            contactRepository.Add(newContact);
+            _contactRepository.Add(newContact);
             return new NoContentResult();
         }
 
         public IActionResult PutContact(int id, Contact modifiedContact)
         {
-            contactRepository.Update(id, modifiedContact);
+            _contactRepository.Update(id, modifiedContact);
             return new NoContentResult();
         }
 
         public IActionResult DeleteContact(int id)
         {
-            contactRepository.Delete(id);
+            _contactRepository.Delete(id);
             return new NoContentResult();
         }
     }

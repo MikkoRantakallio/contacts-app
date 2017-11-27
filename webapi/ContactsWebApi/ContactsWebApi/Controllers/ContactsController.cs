@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ContactsWebApi.Models;
+using ContactsWebApi.Repositories;
 using ContactsWebApi.Services;
 
 namespace ContactsWebApi.Controllers
@@ -11,7 +12,7 @@ namespace ContactsWebApi.Controllers
     [Route("api/contacts")]
     public class ContactsController : Controller
     {
-        private readonly IContactService _contactService;
+        private IContactService _contactService;
 
         public ContactsController(IContactService contactService)
         {
