@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ContactsWebApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactsWebApi
@@ -29,7 +30,9 @@ namespace ContactsWebApi
         {
             var connection = Configuration["ConnectionStringAzure"];
 
+
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
+            services.Configure<AzureSettings>(Configuration.GetSection("AzureSettings"));
             services.AddCors(o => o.AddPolicy("ContactsAppPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -39,6 +42,17 @@ namespace ContactsWebApi
 
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactDbRepository>();
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.Audience = Configuration.GetSection("AzureSettings")["ApplicationId"];
+                    options.Authority = Configuration.GetSection("AzureSettings")["LoginPath"] + Configuration.GetSection("AzureSettings")["DirectoryId"];
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

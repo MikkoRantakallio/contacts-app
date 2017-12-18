@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using ContactsWebApi.Models;
 using ContactsWebApi.Repositories;
 using ContactsWebApi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContactsWebApi.Controllers
 {
+    [Authorize]
     [Route("api/contacts")]
     public class ContactsController : Controller
     {
