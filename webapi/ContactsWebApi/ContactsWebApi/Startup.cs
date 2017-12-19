@@ -31,7 +31,6 @@ namespace ContactsWebApi
             var connection = Configuration["ConnectionStringAzure"];
 
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
-            services.Configure<AzureSettings>(Configuration.GetSection("AzureSettings"));
 
             services.AddCors(o => o.AddPolicy("ContactsAppPolicy", builder =>
             {
