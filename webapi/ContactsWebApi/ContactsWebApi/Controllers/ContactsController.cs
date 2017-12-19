@@ -39,7 +39,6 @@ namespace ContactsWebApi.Controllers
         public IActionResult Post([FromBody]Contact newContact)
         {
             return _contactService.PostContact(newContact);
-//            return new NoContentResult();
         }
 
         [HttpPut("{id}")]

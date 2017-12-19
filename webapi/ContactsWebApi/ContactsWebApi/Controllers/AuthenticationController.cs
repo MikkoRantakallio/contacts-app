@@ -6,6 +6,9 @@ using ContactsWebApi.Models;
 using ContactsWebApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace ContactsWebApi.Controllers
 {
@@ -13,15 +16,17 @@ namespace ContactsWebApi.Controllers
     {
         private ITokenService _tokenService;
 
-        public AuthenticationController(ITokenService tokenService)
+        public AuthenticationController(ITokenService tokenService, IConfiguration configuration)
         {
             _tokenService = tokenService;
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]AuthRequest authRequest)
+        [Route("api/auth")]
+        public async Task<IActionResult> Post([FromBody]AuthRequest authRequest)
         {
-            return new JsonResult("tadaa");
+            var token = await _tokenService.RequestAccessToken(authRequest);
+            return new JsonResult(token);
         }
     }
 }

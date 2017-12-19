@@ -30,9 +30,9 @@ namespace ContactsWebApi
         {
             var connection = Configuration["ConnectionStringAzure"];
 
-
             services.AddDbContext<ContactContext>(options => options.UseSqlServer(connection));
             services.Configure<AzureSettings>(Configuration.GetSection("AzureSettings"));
+
             services.AddCors(o => o.AddPolicy("ContactsAppPolicy", builder =>
             {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
@@ -42,6 +42,7 @@ namespace ContactsWebApi
 
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactDbRepository>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddAuthentication(options =>
                 {

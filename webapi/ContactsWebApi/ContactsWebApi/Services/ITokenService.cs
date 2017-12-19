@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContactsWebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace ContactsWebApi.Services
 {
     public interface ITokenService
     {
-        Token GetToken(AuthRequest authRequest);
+        Task<Token> RequestAccessToken(AuthRequest authRequest);
     }
 }
